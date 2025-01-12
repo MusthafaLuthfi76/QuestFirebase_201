@@ -70,4 +70,8 @@ class EditViewModel(
         uiEvent = uiEvent.copy(isEntryValid = errorState)
         return errorState.isValid()
     }
+
+    fun updateState(mahasiswaEvent: MahasiswaEvent) {
+        uiEvent = uiEvent.copy(insertUiEvent = mahasiswaEvent)
+    }
 }
