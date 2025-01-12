@@ -36,5 +36,14 @@ fun PengelolaHalaman(
                 }
             )
         }
+
+        composable(DestinasiEdit.route) { backStackEntry ->
+            val nim = backStackEntry.arguments?.getString("nim") ?: ""
+            InsertMhsView(
+                onBack = { navController.popBackStack() },
+                onNavigate = { navController.popBackStack() },
+                initialNim = nim
+            )
+        }
     }
 }
