@@ -53,9 +53,7 @@ fun HomeScreen(
     modifier: Modifier = Modifier,
     onDetailClick:(String) -> Unit = {},
     viewModel : HomeViewModel = viewModel(factory = PenyediaViewModel.Factory),
-    onDeleteClick = {
-        viewModel.deleteMhs(it)
-    }
+
 ){
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
 
@@ -84,7 +82,7 @@ fun HomeScreen(
             homeUiState = viewModel.mhsUIState,
             retryAction = { viewModel.getMhs() }, Modifier.padding(innerPadding),
             onDetailClick = onDetailClick, onDeleteClick = {
-                viewModel.getMhs()
+                viewModel.deleteMhs(it)
             }
         )
     }
