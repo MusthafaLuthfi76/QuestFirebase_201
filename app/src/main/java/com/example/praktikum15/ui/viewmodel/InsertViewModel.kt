@@ -35,8 +35,10 @@ class InsertViewModel(
             jenisKelamin = if (event.jenisKelamin.isNotEmpty()) null else "Jenis Kelamin Tidak boleh kosong",
             alamat = if (event.alamat.isNotEmpty()) null else "Alamat Tidak boleh kosong",
             kelas = if (event.kelas.isNotEmpty()) null else "Kelas Tidak boleh kosong",
-            angkatan = if (event.angkatan.isNotEmpty()) null else "Angkatan Tidak boleh kosong"
-
+            angkatan = if (event.angkatan.isNotEmpty()) null else "Angkatan Tidak boleh kosong",
+            dospem1 = if (event.dospem1.isNotEmpty()) null else "Dosen Pembibing 1 tidak boleh kosong",
+            dospem2 = if (event.dospem2.isNotEmpty()) null else "Dosen Pembibing 2 tidak boleh kosong",
+            judulSkripsi = if (event.judulSkripsi.isNotEmpty()) null else "Judul Skripsi tidak boleh kosong",
         )
 
         uiEvent = uiEvent.copy(isEntryValid = errorState)
@@ -89,10 +91,14 @@ data class FormErrorState(
     val alamat: String?= null,
     val kelas: String?= null,
     val angkatan: String?= null,
+    val dospem1: String?= null,
+    val dospem2: String?= null,
+    val judulSkripsi: String? = null
 ){
     fun isValid(): Boolean{
         return nim == null && nama == null && jenisKelamin == null &&
-                alamat == null && kelas == null && angkatan == null
+                alamat == null && kelas == null && angkatan == null &&
+                dospem1 == null && dospem2 == null && judulSkripsi == null
     }
 }
 
@@ -104,6 +110,9 @@ data class MahasiswaEvent(
     val alamat: String = "",
     val kelas: String = "",
     val angkatan: String = "",
+    val dospem1: String = "",
+    val dospem2: String = "",
+    val judulSkripsi: String = ""
 )
 
 // Menyimpan input form ke dalam entity
@@ -113,5 +122,8 @@ fun MahasiswaEvent.toMhsModel(): Mahasiswa = Mahasiswa(
     jenisKelamin = jenisKelamin,
     alamat = alamat,
     kelas = kelas,
-    angkatan = angkatan
+    angkatan = angkatan,
+    dospem1 = dospem1,
+    dospem2 = dospem2,
+    judulSkripsi = judulSkripsi
 )

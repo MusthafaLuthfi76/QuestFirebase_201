@@ -7,6 +7,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.composable
+import com.example.praktikum15.ui.view.DetailMhsView
+import com.example.praktikum15.ui.view.EditMhsView
 import com.example.praktikum15.ui.view.HomeScreen
 import com.example.praktikum15.ui.view.InsertMhsView
 
@@ -25,6 +27,9 @@ fun PengelolaHalaman(
                 navigateToItemEntry = {
                     navController.navigate(DestinasiInsert.route)
                 },
+                onDetailClick = {nim ->
+                    navController.navigate("detail/${nim}")
+                }
             )
         }
 
@@ -37,12 +42,12 @@ fun PengelolaHalaman(
             )
         }
 
-        composable(DestinasiEdit.route) { backStackEntry ->
+        composable("detail/{nim}") { backStackEntry ->
             val nim = backStackEntry.arguments?.getString("nim") ?: ""
-            InsertMhsView(
-                onBack = { navController.popBackStack() },
-                onNavigate = { navController.popBackStack() },
-                initialNim = nim
+            DetailMhsView(
+                nim = nim,
+                navigateBack = { navController.popBackStack() },
+                onUpdateClick = { navController.navigate(DestinasiInsert.route)}
             )
         }
     }
