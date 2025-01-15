@@ -28,11 +28,12 @@ class DetailViewModel(private val mhsRepository: MahasiswaRepository) : ViewMode
         viewModelScope.launch {
             _detailUiState.value = DetailUiState.Loading
             try {
-                val mahasiswa = mhsRepository.getMahasiswaById(nim)
-                _detailUiState.value = DetailUiState.Success(mahasiswa.first())
+                val mahasiswa = mhsRepository.getMahasiswaById(nim).first()
+                _detailUiState.value = DetailUiState.Success(mahasiswa)
             } catch (e: Exception) {
                 _detailUiState.value = DetailUiState.Error
             }
         }
     }
+
 }
